@@ -1,5 +1,5 @@
-const errorHandler = (err, req, res) => {
-  console.error(err.stack);
+const errorHandler = (error, req, res, next) => {
+  console.error(error.stack);
   res.status(500).json({ success: false, message: "Something went wrong" });
 };
 

@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const connectDb = require("./database/mongodb");
 const errorHandler = require("./utils/errorHandler");
+const authRouter = require("./routes/authRoutes");
 
 //port options
 const port = process.env.PORT || 3001;
@@ -21,6 +22,7 @@ app.use(express.json());
 connectDb();
 
 //routes
+app.use("/auth", authRouter);
 
 // error handlers
 app.use(errorHandler);
