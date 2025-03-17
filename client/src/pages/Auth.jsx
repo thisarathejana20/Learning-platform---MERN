@@ -5,8 +5,26 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import CommonForm from "@/components/CommonForm/CommonForm";
 import { signInFormControls, signUpFormControls } from "@/config";
+import { AuthContext } from "@/context/AuthProvider";
+import { useContext } from "react";
 
 const Auth = () => {
+  const {
+    signInFormData,
+    setSignInFormData,
+    signUpFormData,
+    setSignUpFormData,
+  } = useContext(AuthContext);
+
+  const checkSignUpFormValidity = () =>
+    signUpFormData &&
+    signUpFormData.email !== "" &&
+    signUpFormData.password !== "" &&
+    signUpFormData.username !== "";
+
+  const checkSignInFormValidity = () =>
+    signInFormData.email !== "" && signInFormData.password !== "";
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
       <Card className="w-full max-w-md shadow-lg rounded-2xl">
@@ -26,6 +44,9 @@ const Auth = () => {
               <CommonForm
                 formControls={signInFormControls}
                 buttonText={"Sign In"}
+                formData={signInFormData}
+                setFormData={setSignInFormData}
+                isButtonDisabled={!checkSignInFormValidity()}
               />
             </TabsContent>
 
@@ -33,6 +54,9 @@ const Auth = () => {
               <CommonForm
                 formControls={signUpFormControls}
                 buttonText={"Sign Up"}
+                formData={signUpFormData}
+                setFormData={setSignUpFormData}
+                isButtonDisabled={!checkSignUpFormValidity()}
               />
             </TabsContent>
           </Tabs>

@@ -1,5 +1,4 @@
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -13,6 +12,7 @@ import { Textarea } from "../ui/textarea";
 const FormControls = ({ formControls = [], formData, setFormData }) => {
   const renderComponentsByType = (controlItem) => {
     let element = null;
+    const value = formData[controlItem.name] || "";
 
     switch (controlItem.componentType) {
       case "input":
@@ -23,12 +23,21 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             type={controlItem.type}
             placeholder={controlItem.placeholder}
             className="mt-1"
+            value={value}
+            onChange={(e) =>
+              setFormData({ ...formData, [controlItem.name]: e.target.value })
+            }
           />
         );
         break;
       case "select":
         element = (
-          <Select>
+          <Select
+            value={value}
+            onValueChange={(value) =>
+              setFormData({ ...formData, [controlItem.name]: value })
+            }
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder={controlItem.label} />
             </SelectTrigger>
@@ -50,6 +59,10 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             type={controlItem.type}
             placeholder={controlItem.placeholder}
             className="mt-1"
+            value={value}
+            onChange={(e) =>
+              setFormData({ ...formData, [controlItem.name]: e.target.value })
+            }
           />
         );
         break;
@@ -73,12 +86,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
       {formControls.map((control) => (
         <div key={control.name}>
           <Label htmlFor={control.name}>{control.label}</Label>
-          <Input
-            id={control.name}
-            type={control.type}
-            placeholder={control.placeholder}
-            className="mt-1"
-          />
+          {renderComponentsByType(control)}
         </div>
       ))}
     </div>
