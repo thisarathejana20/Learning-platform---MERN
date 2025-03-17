@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import CommonForm from "@/components/CommonForm/CommonForm";
+import { signInFormControls, signUpFormControls } from "@/config";
 
 const Auth = () => {
   return (
@@ -23,60 +23,17 @@ const Auth = () => {
             </TabsList>
 
             <TabsContent value="signin">
-              <form className="space-y-4">
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    className="mt-1"
-                  />
-                </div>
-                <Button className="w-full mt-2">Sign In</Button>
-              </form>
+              <CommonForm
+                formControls={signInFormControls}
+                buttonText={"Sign In"}
+              />
             </TabsContent>
 
             <TabsContent value="signup">
-              <form className="space-y-4">
-                <div>
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your name"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Create a password"
-                    className="mt-1"
-                  />
-                </div>
-                <Button className="w-full mt-2">Sign Up</Button>
-              </form>
+              <CommonForm
+                formControls={signUpFormControls}
+                buttonText={"Sign Up"}
+              />
             </TabsContent>
           </Tabs>
           <div className="my-4 text-center text-sm text-gray-600">
