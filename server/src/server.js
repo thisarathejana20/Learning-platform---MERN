@@ -1,8 +1,9 @@
 const express = require("express");
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const cors = require("cors");
 const app = express();
-const connectDb = require("./database/monodb");
+const connectDb = require("./database/mongodb");
+const errorHandler = require("./utils/errorHandler");
 
 //port options
 const port = process.env.PORT || 3001;
@@ -20,6 +21,9 @@ app.use(express.json());
 connectDb();
 
 //routes
+
+// error handlers
+app.use(errorHandler);
 
 //server
 app.listen(port, () => {
