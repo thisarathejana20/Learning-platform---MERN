@@ -7,6 +7,7 @@ import { AuthContext } from "./context/AuthProvider";
 import InstructorLayout from "./components/instructor-view/InstructorLayout";
 import StudentLayout from "./components/student-view/StudentLayout";
 import StudentHomePage from "./pages/student/StudentHomePage";
+import NotFound from "./pages/notfound/NotFound";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -45,7 +46,7 @@ function App() {
       />
       <Route path="" element={<StudentHomePage />} />
       <Route path="/home" element={<StudentHomePage />} />
-      <Route path="*" element={<h1>404 Not Found</h1>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
