@@ -6,7 +6,7 @@ const authRouter = express.Router();
 
 authRouter.post("/register", registerUser);
 authRouter.post("/login", loginUser);
-authRouter.post("/check-auth", authenticate, (req, res) => {
+authRouter.get("/check-auth", authenticate, (req, res) => {
   const user = req.user;
   res
     .status(200)

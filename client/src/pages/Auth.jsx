@@ -15,6 +15,7 @@ const Auth = () => {
     signUpFormData,
     setSignUpFormData,
     handleRegisterUser,
+    handleLogInUser,
   } = useContext(AuthContext);
 
   const checkSignUpFormValidity = () =>
@@ -48,6 +49,7 @@ const Auth = () => {
                 formData={signInFormData}
                 setFormData={setSignInFormData}
                 isButtonDisabled={!checkSignInFormValidity()}
+                handleSubmit={handleLogInUser}
               />
             </TabsContent>
 
