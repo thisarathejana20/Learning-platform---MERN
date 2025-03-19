@@ -43,12 +43,16 @@ const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
       if (!error?.response?.data?.success) {
-        sessionStorage.removeItem("access_token");
         setAuth({ authenticated: false, user: null });
       }
     } finally {
       setLoading(false);
     }
+  };
+
+  const logoutUser = () => {
+    sessionStorage.removeItem("access_token");
+    setAuth({ authenticated: false, user: null });
   };
 
   useEffect(() => {
@@ -65,6 +69,7 @@ const AuthProvider = ({ children }) => {
         handleRegisterUser,
         handleLogInUser,
         auth,
+        logoutUser,
       }}
     >
       {loading ? <Skeleton /> : children}

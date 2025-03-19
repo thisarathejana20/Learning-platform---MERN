@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import Auth from "./pages/Auth";
 import RouteGuard from "./components/RouteGuard";
 import { useContext } from "react";
@@ -8,6 +7,7 @@ import InstructorLayout from "./components/instructor-view/InstructorLayout";
 import StudentLayout from "./components/student-view/StudentLayout";
 import StudentHomePage from "./pages/student/StudentHomePage";
 import NotFound from "./pages/notfound/NotFound";
+import CreateNewCourse from "./pages/instructor/CreateNewCourse";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -18,7 +18,7 @@ function App() {
         path="/auth"
         element={
           <RouteGuard
-            authenticated={auth.authenticated}
+            authenticated={auth?.authenticated}
             element={<Auth />}
             user={auth?.user}
           />
@@ -44,7 +44,17 @@ function App() {
           />
         }
       />
-      <Route path="" element={<StudentHomePage />} />
+      <Route
+        path="/instructor/new-course"
+        element={
+          <RouteGuard
+            authenticated={auth?.authenticated}
+            element={<CreateNewCourse />}
+            user={auth?.user}
+          />
+        }
+      />
+      <Route path="/" element={<StudentHomePage />} />
       <Route path="/home" element={<StudentHomePage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
