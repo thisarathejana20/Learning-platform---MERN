@@ -7,6 +7,8 @@ import { courseLandingPageFormControls } from "@/config";
 const CourseLandingPage = () => {
   const { courseLandingFormData, setCourseLandingFormData } =
     useContext(InstructorContext);
+  console.log(courseLandingFormData);
+
   return (
     <Card>
       <CardHeader>

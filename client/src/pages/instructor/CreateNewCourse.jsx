@@ -5,7 +5,6 @@ import CourseLandingPage from "../../components/instructor-view/CourseLandingPag
 import CourseSettings from "../../components/instructor-view/CourseSettings";
 import CourseCurriculum from "../../components/instructor-view/CourseCurriculum";
 import { InstructorContext } from "@/context/InstructorProvider";
-import { AuthContext } from "@/context/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   addNewCourseService,
@@ -27,7 +26,6 @@ const CreateNewCourse = () => {
     setCurrentEditedCourseId,
   } = useContext(InstructorContext);
 
-  const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -115,8 +113,6 @@ const CreateNewCourse = () => {
       setCourseLandingFormData(setCourseFormData);
       setCourseCurriculumFormData(response?.data?.curriculum);
     }
-
-    console.log(response, "response");
   };
 
   useEffect(() => {

@@ -27,7 +27,19 @@ const uploadMediaToCloudinary = async (req, res) => {
   }
 };
 
+const uploadMediaToCloudinaryInBulk = async (req, res) => {
+  try {
+    const uploadPromises = req.files.map((file) => uploadMedia(file));
+    const result = await Promise.all(uploadPromises);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, error: "Something went wrong" });
+  }
+};
+
 module.exports = {
   deleteMediaFromCloudinary,
   uploadMediaToCloudinary,
+  uploadMediaToCloudinaryInBulk,
 };
