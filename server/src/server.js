@@ -26,7 +26,7 @@ connectDb();
 //routes
 app.use("/auth", authRouter);
 app.use("/media", mediaRouter);
-app.use("/course", courseRouter);
+app.use("/courses", courseRouter);
 
 // error handlers
 app.use(errorHandler);

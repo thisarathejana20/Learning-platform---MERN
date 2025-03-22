@@ -25,7 +25,9 @@ const AuthProvider = ({ children }) => {
         "access_token",
         JSON.stringify(data.data.accessToken)
       );
-      setAuth({ authenticated: true, user: data.data.user });
+      sessionStorage.setItem("user", JSON.stringify(data.data.user));
+      let user = data.data.user;
+      setAuth({ authenticated: true, user });
     } else {
       setAuth({ authenticated: false, user: null });
     }
@@ -52,7 +54,12 @@ const AuthProvider = ({ children }) => {
 
   const logoutUser = () => {
     sessionStorage.removeItem("access_token");
+    sessionStorage.removeItem("user");
     setAuth({ authenticated: false, user: null });
+  };
+
+  const resetCredentials = () => {
+    logoutUser();
   };
 
   useEffect(() => {
@@ -70,6 +77,7 @@ const AuthProvider = ({ children }) => {
         handleLogInUser,
         auth,
         logoutUser,
+        resetCredentials,
       }}
     >
       {loading ? <Skeleton /> : children}

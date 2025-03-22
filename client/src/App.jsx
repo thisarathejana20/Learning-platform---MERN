@@ -3,11 +3,11 @@ import Auth from "./pages/Auth";
 import RouteGuard from "./components/RouteGuard";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthProvider";
-import InstructorLayout from "./components/instructor-view/InstructorLayout";
 import StudentLayout from "./components/student-view/StudentLayout";
 import StudentHomePage from "./pages/student/StudentHomePage";
 import NotFound from "./pages/notfound/NotFound";
-import CreateNewCourse from "./components/instructor-view/CreateNewCourse";
+import CreateNewCourse from "./pages/instructor/CreateNewCourse";
+import Instructor from "./pages/instructor/Instructor";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -29,7 +29,7 @@ function App() {
         element={
           <RouteGuard
             authenticated={auth?.authenticated}
-            element={<InstructorLayout />}
+            element={<Instructor />}
             user={auth?.user}
           />
         }

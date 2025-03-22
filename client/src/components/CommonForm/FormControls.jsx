@@ -43,7 +43,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             </SelectTrigger>
             <SelectContent>
               {controlItem?.options.map((option) => (
-                <SelectItem key={option.id} value={option.value}>
+                <SelectItem key={option.id} value={option.id}>
                   {option.label}
                 </SelectItem>
               ))}
