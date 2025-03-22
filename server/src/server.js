@@ -5,6 +5,7 @@ const app = express();
 const connectDb = require("./database/mongodb");
 const errorHandler = require("./utils/errorHandler");
 const authRouter = require("./routes/authRoutes");
+const mediaRouter = require("./routes/mediaRoutes");
 
 //port options
 const port = process.env.PORT || 3001;
@@ -23,6 +24,7 @@ connectDb();
 
 //routes
 app.use("/auth", authRouter);
+app.use("/media", mediaRouter);
 
 // error handlers
 app.use(errorHandler);

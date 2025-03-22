@@ -15,7 +15,7 @@ import MediaProgressbar from "../MediaProgressBar";
 import VideoPlayer from "../VideoPlayer";
 import { InstructorContext } from "@/context/InstructorProvider";
 
-function CourseCurriculum() {
+const CourseCurriculum = () => {
   const {
     courseCurriculumFormData,
     setCourseCurriculumFormData,
@@ -27,16 +27,16 @@ function CourseCurriculum() {
 
   const bulkUploadInputRef = useRef(null);
 
-  function handleNewLecture() {
+  const handleNewLecture = () => {
     setCourseCurriculumFormData([
       ...courseCurriculumFormData,
       {
         ...courseCurriculumInitialFormData[0],
       },
     ]);
-  }
+  };
 
-  function handleCourseTitleChange(event, currentIndex) {
+  const handleCourseTitleChange = (event, currentIndex) => {
     let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
     cpyCourseCurriculumFormData[currentIndex] = {
       ...cpyCourseCurriculumFormData[currentIndex],
@@ -44,9 +44,9 @@ function CourseCurriculum() {
     };
 
     setCourseCurriculumFormData(cpyCourseCurriculumFormData);
-  }
+  };
 
-  function handleFreePreviewChange(currentValue, currentIndex) {
+  const handleFreePreviewChange = (currentValue, currentIndex) => {
     let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
     cpyCourseCurriculumFormData[currentIndex] = {
       ...cpyCourseCurriculumFormData[currentIndex],
@@ -54,9 +54,9 @@ function CourseCurriculum() {
     };
 
     setCourseCurriculumFormData(cpyCourseCurriculumFormData);
-  }
+  };
 
-  async function handleSingleLectureUpload(event, currentIndex) {
+  const handleSingleLectureUpload = async (event, currentIndex) => {
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
@@ -83,9 +83,9 @@ function CourseCurriculum() {
         console.log(error);
       }
     }
-  }
+  };
 
-  async function handleReplaceVideo(currentIndex) {
+  const handleReplaceVideo = async (currentIndex) => {
     let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
     const getCurrentVideoPublicId =
       cpyCourseCurriculumFormData[currentIndex].public_id;
@@ -103,9 +103,9 @@ function CourseCurriculum() {
 
       setCourseCurriculumFormData(cpyCourseCurriculumFormData);
     }
-  }
+  };
 
-  function isCourseCurriculumFormDataValid() {
+  const isCourseCurriculumFormDataValid = () => {
     return courseCurriculumFormData.every((item) => {
       return (
         item &&
@@ -114,13 +114,13 @@ function CourseCurriculum() {
         item.videoUrl.trim() !== ""
       );
     });
-  }
+  };
 
-  function handleOpenBulkUploadDialog() {
+  const handleOpenBulkUploadDialog = () => {
     bulkUploadInputRef.current?.click();
-  }
+  };
 
-  function areAllCourseCurriculumFormDataObjectsEmpty(arr) {
+  const areAllCourseCurriculumFormDataObjectsEmpty = (arr) => {
     return arr.every((obj) => {
       return Object.entries(obj).every(([key, value]) => {
         if (typeof value === "boolean") {
@@ -129,9 +129,9 @@ function CourseCurriculum() {
         return value === "";
       });
     });
-  }
+  };
 
-  async function handleMediaBulkUpload(event) {
+  const handleMediaBulkUpload = async (event) => {
     const selectedFiles = Array.from(event.target.files);
     const bulkFormData = new FormData();
 
@@ -168,9 +168,9 @@ function CourseCurriculum() {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
-  async function handleDeleteLecture(currentIndex) {
+  const handleDeleteLecture = async (currentIndex) => {
     let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
     const getCurrentSelectedVideoPublicId =
       cpyCourseCurriculumFormData[currentIndex].public_id;
@@ -184,7 +184,7 @@ function CourseCurriculum() {
 
       setCourseCurriculumFormData(cpyCourseCurriculumFormData);
     }
-  }
+  };
 
   return (
     <Card>
@@ -285,6 +285,6 @@ function CourseCurriculum() {
       </CardContent>
     </Card>
   );
-}
+};
 
 export default CourseCurriculum;
