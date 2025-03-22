@@ -3,6 +3,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import CourseLandingPage from "./CourseLandingPage";
+import CourseSettings from "./CourseSettings";
+import CourseCurriculum from "./CourseCurriculum";
 
 const CreateNewCourse = () => {
   const [courseData, setCourseData] = useState({
@@ -32,60 +35,19 @@ const CreateNewCourse = () => {
         {/* Curriculum Tab */}
         <TabsContent value="curriculum">
           <h2 className="text-lg font-semibold mb-2">Course Curriculum</h2>
-          <Textarea
-            placeholder="Add course modules, lessons, and quizzes..."
-            value={courseData.curriculum}
-            onChange={(e) =>
-              setCourseData({ ...courseData, curriculum: e.target.value })
-            }
-          />
+          <CourseCurriculum />
         </TabsContent>
 
         {/* Course Landing Page Tab */}
         <TabsContent value="landing">
           <h2 className="text-lg font-semibold mb-2">Course Details</h2>
-          <Input
-            type="text"
-            placeholder="Course Title"
-            className="mb-2"
-            value={courseData.title}
-            onChange={(e) =>
-              setCourseData({ ...courseData, title: e.target.value })
-            }
-          />
-          <Textarea
-            placeholder="Course Description"
-            className="mb-2"
-            value={courseData.description}
-            onChange={(e) =>
-              setCourseData({ ...courseData, description: e.target.value })
-            }
-          />
-          <Input
-            type="number"
-            placeholder="Course Price ($)"
-            value={courseData.price}
-            onChange={(e) =>
-              setCourseData({ ...courseData, price: e.target.value })
-            }
-          />
+          <CourseLandingPage />
         </TabsContent>
 
         {/* Settings Tab */}
         <TabsContent value="settings">
           <h2 className="text-lg font-semibold mb-2">Course Settings</h2>
-          <label className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              onChange={(e) =>
-                setCourseData({
-                  ...courseData,
-                  settings: { published: e.target.checked },
-                })
-              }
-            />
-            <span>Publish this course</span>
-          </label>
+          <CourseSettings />
         </TabsContent>
       </Tabs>
 

@@ -7,7 +7,7 @@ import InstructorLayout from "./components/instructor-view/InstructorLayout";
 import StudentLayout from "./components/student-view/StudentLayout";
 import StudentHomePage from "./pages/student/StudentHomePage";
 import NotFound from "./pages/notfound/NotFound";
-import CreateNewCourse from "./pages/instructor/CreateNewCourse";
+import CreateNewCourse from "./components/instructor-view/CreateNewCourse";
 
 function App() {
   const { auth } = useContext(AuthContext);
