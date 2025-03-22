@@ -6,6 +6,7 @@ const connectDb = require("./database/mongodb");
 const errorHandler = require("./utils/errorHandler");
 const authRouter = require("./routes/authRoutes");
 const mediaRouter = require("./routes/mediaRoutes");
+const courseRouter = require("./routes/courseRoutes");
 
 //port options
 const port = process.env.PORT || 3001;
@@ -25,6 +26,7 @@ connectDb();
 //routes
 app.use("/auth", authRouter);
 app.use("/media", mediaRouter);
+app.use("/course", courseRouter);
 
 // error handlers
 app.use(errorHandler);
