@@ -8,6 +8,12 @@ import StudentHomePage from "./pages/student/StudentHomePage";
 import NotFound from "./pages/notfound/NotFound";
 import CreateNewCourse from "./pages/instructor/CreateNewCourse";
 import Instructor from "./pages/instructor/Instructor";
+import Courses from "./pages/student/Courses";
+import CourseDetails from "./pages/student/CourseDetails";
+import PaymentReturn from "./pages/student/PaymentReturn";
+import StudentCourses from "./pages/student/StudentCourses";
+import CourseProgress from "./pages/student/CourseProgress";
+import HomePage from "./pages/student/HomePage";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -35,16 +41,6 @@ function App() {
         }
       />
       <Route
-        path="/student"
-        element={
-          <RouteGuard
-            authenticated={auth?.authenticated}
-            element={<StudentLayout />}
-            user={auth?.user}
-          />
-        }
-      />
-      <Route
         path="/instructor/new-course"
         element={
           <RouteGuard
@@ -64,8 +60,25 @@ function App() {
           />
         }
       />
-      <Route path="/" element={<StudentHomePage />} />
-      <Route path="/home" element={<StudentHomePage />} />
+      <Route
+        path="/student"
+        element={
+          <RouteGuard
+            authenticated={auth?.authenticated}
+            element={<StudentLayout />}
+            user={auth?.user}
+          />
+        }
+      >
+        <Route path="" element={<HomePage />} />
+        <Route path="home" element={<HomePage />} />
+        <Route path="courses" element={<Courses />} />
+        <Route path="course/details/:id" element={<CourseDetails />} />
+        <Route path="payment-return" element={<PaymentReturn />} />
+        <Route path="student-courses" element={<StudentCourses />} />
+        <Route path="course-progress/:id" element={<CourseProgress />} />
+      </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
