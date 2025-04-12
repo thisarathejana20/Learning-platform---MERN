@@ -8,6 +8,6 @@ const studentRouter = express.Router();
 
 studentRouter.get("/", getAllStudentViewCourses);
 studentRouter.get("/:id", getStudentViewCourseDetails);
-router.get("/purchase-info/:id/:studentId", checkCoursePurchaseInfo);
+studentRouter.get("/purchase-info/:id/:studentId", checkCoursePurchaseInfo);
 
 module.exports = studentRouter;
